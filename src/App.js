@@ -1,22 +1,24 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import VVComponent from './VVComponents/VVComponent';
+import VVModal from './VVComponents/VVModal';
 import './App.css';
 
 function App() {
+  const [isShown, setIsShown] = useState(false);
+
+  const showHandler = () => {
+    setIsShown(true);
+  }
+
+  const hideHandler = () => {
+    setIsShown(false);
+  }
+
   return (
     <div className="App">
+      {isShown && <VVModal onClose={hideHandler} />}
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <VVComponent onShow={showHandler}/>
       </header>
     </div>
   );
